@@ -22,7 +22,7 @@ pipeline {
     stage('Build') {
     agent { label 'ubuntu' }
         steps {
-	    sh "cd actual-codebase"
+	    sh "cd ${WORKSPACE}/actual-codebase"
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
         }
     }
