@@ -6,13 +6,18 @@ pipeline {
       stage('Checkout'){
       agent { label 'ubuntu' }
             steps {
-                withCredentials([string(credentialsId: 'GitHub_Token', variable: 'github_token')]) {
+            
+			dir('actual-codebase') {
+				
+				withCredentials([string(credentialsId: 'GitHub_Token', variable: 'github_token')]) {
                     checkout([$class: 'GitSCM',
                               branches: [[name: '*/master']],
                                      extensions: [[$class: 'CleanCheckout']],
                                      userRemoteConfigs: [[url: 'https://' + env.github_token + '@' + 'github.com/sk617/simple-java-maven-app.git']]
-                                     ])
-            }
+                            ])
+               }
+				
+			}
         }
     }
     stage('Build') {
