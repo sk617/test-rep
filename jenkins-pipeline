@@ -1,5 +1,6 @@
 pipeline {
-     agent { label 'master' }  
+     agent { label 'ubuntu' }  
+     
      
     stages {
   
@@ -16,7 +17,7 @@ pipeline {
         }
     }
     stage('Build') {
-    //agent { label 'ubuntu' }
+    agent { label 'ubuntu' }
         steps {
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
         }
