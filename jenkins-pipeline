@@ -29,6 +29,7 @@ pipeline {
         }
     }
     stage('Build') {
+    agent { label 'ubuntu' }
         steps {
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
         }
