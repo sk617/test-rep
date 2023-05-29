@@ -5,7 +5,7 @@ pipeline {
     stages {
   
       stage('Checkout'){
-        agent { label 'ubuntu' }
+        //agent { label 'ubuntu' }
             steps {
                 withCredentials([string(credentialsId: 'GitHub_Token', variable: 'github_token')]) {
                     checkout([$class: 'GitSCM',
@@ -17,7 +17,7 @@ pipeline {
         }
     }
     stage('Build') {
-    agent { label 'ubuntu' }
+    //agent { label 'ubuntu' }
         steps {
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
         }
